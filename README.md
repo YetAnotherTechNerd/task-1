@@ -48,25 +48,25 @@ src/
 
 ## Development Phases
 
-### Phase 1: Core Structure ✅ IN PROGRESS
-- [ ] Set up React project with Tailwind CSS
-- [ ] Create component skeleton structure
-- [ ] Build LeaderboardHeader component
-- [ ] Build FilterSection components
+### Phase 1: Core Structure ✅ COMPLETE
+- [x] Set up React project with Tailwind CSS
+- [x] Create component skeleton structure
+- [x] Build LeaderboardHeader component
+- [x] Build FilterSection components
 
-### Phase 2: Filtering Logic
-- [ ] Implement filter state management
-- [ ] Implement cascading dropdown logic
-- [ ] Connect search bar to filtering
-- [ ] Create mock data and test filters
+### Phase 2: Filtering Logic ✅ COMPLETE
+- [x] Implement filter state management (`useFilters` hook)
+- [x] Implement cascading dropdown logic (Year → Quarter → Category)
+- [x] Connect search bar to filtering (debounced, 300ms)
+- [x] Create mock data and test filters (16 employees across 2024–2025)
 
-### Phase 3: Data Visualization
-- [ ] Build PodiumSection with top-3 calculation
-- [ ] Build PodiumCard styling with medals
-- [ ] Build EmployeeListSection with row rendering
-- [ ] Add row expand/collapse functionality
+### Phase 3: Data Visualization ✅ COMPLETE
+- [x] Build PodiumSection with top-3 calculation
+- [x] Build PodiumCard styling with medals (Gold / Silver / Bronze)
+- [x] Build EmployeeListSection with row rendering
+- [x] Add row expand/collapse functionality
 
-### Phase 4: Activity Details & Polish
+### Phase 4: Activity Details & Polish ⏳ Pending
 - [ ] Build RecentActivityPanel component
 - [ ] Add activity data to employee rows
 - [ ] Implement responsive design
