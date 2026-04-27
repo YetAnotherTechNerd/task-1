@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useCallback } from 'react';
+import mockEmployeeData from '../../data/mockEmployeeData';
 import useFilters from '../../hooks/useFilters';
 import LeaderboardHeader from './LeaderboardHeader';
 import FilterSection from './FilterSection/FilterSection';
@@ -8,28 +9,37 @@ import EmployeeListSection from './EmployeeListSection/EmployeeListSection';
 const CompanyLeaderboard = () => {
   const {
     filters,
-    expandedRows,
     availableYears,
     availableQuarters,
     availableCategories,
     filteredData,
     topThree,
     handleFilterChange,
-    toggleRowExpansion,
-  } = useFilters();
+  } = useFilters(mockEmployeeData);
+
+  const [expandedRows, setExpandedRows] = useState(new Set());
+
+  const handleToggleExpand = useCallback((employeeId) => {
+    setExpandedRows((prev) => {
+      const next = new Set(prev);
+      if (next.has(employeeId)) {
+        next.delete(employeeId);
+      } else {
+        next.add(employeeId);
+      }
+      return next;
+    });
+  }, []);
 
   return (
-    <div className="max-w-5xl mx-auto my-8 bg-white rounded-2xl shadow-lg overflow-hidden">
-      <LeaderboardHeader
-        title="Leaderboard"
-        subtitle="Top performers based on contributions and activity"
-      />
+    <div className="mx-auto max-w-5xl px-4 py-8 space-y-6">
+      <LeaderboardHeader />
 
       <FilterSection
+        years={availableYears}
+        quarters={availableQuarters}
+        categories={availableCategories}
         filters={filters}
-        availableYears={availableYears}
-        availableQuarters={availableQuarters}
-        availableCategories={availableCategories}
         onFilterChange={handleFilterChange}
       />
 
@@ -38,7 +48,7 @@ const CompanyLeaderboard = () => {
       <EmployeeListSection
         employees={filteredData}
         expandedRows={expandedRows}
-        onToggleExpand={toggleRowExpansion}
+        onToggleExpand={handleToggleExpand}
       />
     </div>
   );

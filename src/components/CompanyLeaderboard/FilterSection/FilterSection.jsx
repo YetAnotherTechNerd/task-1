@@ -5,39 +5,46 @@ import CategoryDropdown from './CategoryDropdown';
 import SearchBar from './SearchBar';
 
 const FilterSection = ({
+  years,
+  quarters,
+  categories,
   filters,
-  availableYears,
-  availableQuarters,
-  availableCategories,
   onFilterChange,
 }) => {
   return (
-    <div className="flex flex-wrap gap-3 p-4 bg-white border-b border-gray-200">
-      <YearDropdown
-        years={availableYears}
-        selected={filters.year}
-        onChange={(value) => onFilterChange('year', value)}
-        placeholder="Select Year"
-      />
-      <QuarterDropdown
-        quarters={availableQuarters}
-        selected={filters.quarter}
-        onChange={(value) => onFilterChange('quarter', value)}
-        disabled={!filters.year}
-        placeholder="Select Quarter"
-      />
-      <CategoryDropdown
-        categories={availableCategories}
-        selected={filters.category}
-        onChange={(value) => onFilterChange('category', value)}
-        disabled={!filters.year || !filters.quarter}
-        placeholder="Select Category"
-      />
-      <SearchBar
-        value={filters.searchQuery}
-        onChange={(value) => onFilterChange('searchQuery', value)}
-        placeholder="Search by name or department…"
-      />
+    <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-4">
+      <div className="flex flex-wrap gap-4 items-end">
+        <div className="w-36">
+          <YearDropdown
+            years={years}
+            selected={filters.year}
+            onChange={(val) => onFilterChange('year', val)}
+          />
+        </div>
+
+        <div className="w-36">
+          <QuarterDropdown
+            quarters={quarters}
+            selected={filters.quarter}
+            onChange={(val) => onFilterChange('quarter', val)}
+            disabled={!filters.year}
+          />
+        </div>
+
+        <div className="w-40">
+          <CategoryDropdown
+            categories={categories}
+            selected={filters.category}
+            onChange={(val) => onFilterChange('category', val)}
+            disabled={!filters.year && !filters.quarter}
+          />
+        </div>
+
+        <SearchBar
+          value={filters.searchQuery}
+          onChange={(val) => onFilterChange('searchQuery', val)}
+        />
+      </div>
     </div>
   );
 };

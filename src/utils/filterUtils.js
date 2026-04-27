@@ -1,50 +1,49 @@
 /**
- * Extract unique years from data, sorted descending.
- * @param {Array} data - Array of employee objects
- * @returns {string[]} Sorted years (newest first)
+ * Extract unique, sorted years from the employee dataset.
+ * @param {Array} data
+ * @returns {number[]}
  */
 export const getAvailableYears = (data) => {
   const years = [...new Set(data.map((e) => e.year))];
-  return years.sort((a, b) => b.localeCompare(a));
+  return years.sort((a, b) => a - b);
 };
 
 /**
- * Get quarters available for a selected year.
+ * Extract unique quarters available for a given year.
+ * When no year is provided all quarters present in the dataset are returned.
  * @param {Array} data
- * @param {string} year
- * @returns {string[]} Sorted quarters for that year
+ * @param {number|null} year
+ * @returns {string[]}
  */
 export const getAvailableQuarters = (data, year) => {
-  if (!year) return [];
-  const quarters = [...new Set(data.filter((e) => e.year === year).map((e) => e.quarter))];
-  return quarters.sort();
+  const filtered = year ? data.filter((e) => e.year === year) : data;
+  const order = ['Q1', 'Q2', 'Q3', 'Q4'];
+  const quarters = [...new Set(filtered.map((e) => e.quarter))];
+  return quarters.sort((a, b) => order.indexOf(a) - order.indexOf(b));
 };
 
 /**
- * Get categories available for a selected year + quarter combination.
+ * Extract unique categories available for the given year + quarter combination.
+ * Filters are applied only when a value is provided.
  * @param {Array} data
- * @param {string} year
- * @param {string} quarter
- * @returns {string[]} Sorted category names
+ * @param {number|null} year
+ * @param {string|null} quarter
+ * @returns {string[]}
  */
 export const getAvailableCategories = (data, year, quarter) => {
-  if (!year || !quarter) return [];
-  const categories = [
-    ...new Set(
-      data
-        .filter((e) => e.year === year && e.quarter === quarter)
-        .map((e) => e.category)
-    ),
-  ];
+  let filtered = data;
+  if (year) filtered = filtered.filter((e) => e.year === year);
+  if (quarter) filtered = filtered.filter((e) => e.quarter === quarter);
+  const categories = [...new Set(filtered.map((e) => e.category))];
   return categories.sort();
 };
 
 /**
- * Apply cascading filters: Year → Quarter → Category → Search.
- * Results are sorted by points descending.
+ * Apply cascading filters and return the sorted employee list.
+ * The result is sorted by points descending.
  * @param {Array} data
- * @param {{ year: string|null, quarter: string|null, category: string|null, searchQuery: string }} filters
- * @returns {Array} Filtered and sorted employee list
+ * @param {{ year: number|null, quarter: string|null, category: string|null, searchQuery: string }} filters
+ * @returns {Array}
  */
 export const applyFilters = (data, filters) => {
   let result = data;
@@ -58,13 +57,14 @@ export const applyFilters = (data, filters) => {
   if (filters.category) {
     result = result.filter((e) => e.category === filters.category);
   }
-  if (filters.searchQuery) {
-    const query = filters.searchQuery.toLowerCase();
+  if (filters.searchQuery && filters.searchQuery.trim() !== '') {
+    const query = filters.searchQuery.toLowerCase().trim();
     result = result.filter(
       (e) =>
         e.name.toLowerCase().includes(query) ||
         e.surname.toLowerCase().includes(query) ||
-        e.department.toLowerCase().includes(query)
+        e.department.toLowerCase().includes(query) ||
+        e.position.toLowerCase().includes(query)
     );
   }
 
@@ -72,24 +72,10 @@ export const applyFilters = (data, filters) => {
 };
 
 /**
- * Sort employees by points and return the top 3.
- * @param {Array} data
- * @returns {Array} Top 3 employees sorted by points descending
+ * Return the top 3 employees by points from an already-filtered list.
+ * @param {Array} data - pre-filtered and sorted employee array
+ * @returns {Array}
  */
 export const getTopThree = (data) => {
-  return [...data].sort((a, b) => b.points - a.points).slice(0, 3);
-};
-
-/**
- * Create a debounced version of a function.
- * @param {Function} func - Function to debounce
- * @param {number} delay - Delay in milliseconds
- * @returns {Function} Debounced function
- */
-export const debounce = (func, delay) => {
-  let timer;
-  return (...args) => {
-    clearTimeout(timer);
-    timer = setTimeout(() => func(...args), delay);
-  };
+  return data.slice(0, 3);
 };

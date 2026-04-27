@@ -1,36 +1,59 @@
 import React from 'react';
-import PodiumCard from './PodiumCard';
 
-const podiumOrder = [1, 0, 2]; // display order: 2nd, 1st, 3rd
+const MEDAL_CONFIG = {
+  1: { emoji: '🥇', bg: 'bg-yellow-50', border: 'border-yellow-400', text: 'text-yellow-700', label: '1st Place' },
+  2: { emoji: '🥈', bg: 'bg-gray-100', border: 'border-gray-400', text: 'text-gray-600', label: '2nd Place' },
+  3: { emoji: '🥉', bg: 'bg-orange-50', border: 'border-orange-400', text: 'text-orange-700', label: '3rd Place' },
+};
+
+const PodiumCard = ({ position, employee }) => {
+  const config = MEDAL_CONFIG[position];
+  if (!employee) return null;
+
+  return (
+    <div
+      className={`
+        flex flex-col items-center rounded-xl border-2 p-6 shadow-sm
+        ${config.bg} ${config.border}
+      `}
+    >
+      <span className="text-4xl" role="img" aria-label={config.label}>
+        {config.emoji}
+      </span>
+      <p className="mt-3 text-lg font-bold text-gray-800">
+        {employee.name} {employee.surname}
+      </p>
+      <p className="text-sm text-gray-500">{employee.position}</p>
+      <p className={`text-xs font-medium ${config.text}`}>{employee.department}</p>
+      <p className={`mt-3 text-2xl font-extrabold ${config.text}`}>
+        {employee.points.toLocaleString()}
+        <span className="ml-1 text-sm font-normal">pts</span>
+      </p>
+    </div>
+  );
+};
 
 const PodiumSection = ({ topThree }) => {
-  if (!topThree || topThree.length === 0) return null;
+  if (!topThree || topThree.length === 0) {
+    return null;
+  }
 
-  const medals = [
-    { label: '🥇', rank: 1, heightClass: 'h-32', bgClass: 'bg-gold-100 border-gold-400', textClass: 'text-gold-700' },
-    { label: '🥈', rank: 2, heightClass: 'h-24', bgClass: 'bg-silver-100 border-silver-400', textClass: 'text-silver-600' },
-    { label: '🥉', rank: 3, heightClass: 'h-20', bgClass: 'bg-bronze-100 border-bronze-400', textClass: 'text-bronze-700' },
+  // Reorder for visual podium: 2nd | 1st | 3rd
+  const podiumOrder = [
+    { position: 2, employee: topThree[1] },
+    { position: 1, employee: topThree[0] },
+    { position: 3, employee: topThree[2] },
   ];
 
   return (
-    <div className="bg-gradient-to-b from-indigo-50 to-white px-6 py-8 border-b border-gray-200">
-      <h2 className="text-center text-lg font-semibold text-gray-600 mb-6 uppercase tracking-wider">
-        Top Performers
-      </h2>
-      <div className="flex items-end justify-center gap-4">
-        {podiumOrder.map((index) => {
-          const employee = topThree[index];
-          if (!employee) return null;
-          const medal = medals[index];
-          return (
-            <PodiumCard
-              key={employee.id}
-              employee={employee}
-              rank={index + 1}
-              medal={medal}
-            />
-          );
-        })}
+    <div>
+      <h2 className="mb-4 text-lg font-bold text-gray-700">Top Performers</h2>
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+        {podiumOrder.map(({ position, employee }) =>
+          employee ? (
+            <PodiumCard key={position} position={position} employee={employee} />
+          ) : null
+        )}
       </div>
     </div>
   );

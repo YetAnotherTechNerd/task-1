@@ -2,47 +2,47 @@ import React from 'react';
 import EmployeeRow from './EmployeeRow';
 
 const EmployeeListSection = ({ employees, expandedRows, onToggleExpand }) => {
+  if (employees.length === 0) {
+    return (
+      <div className="rounded-xl bg-white shadow-sm border border-gray-100 px-8 py-12 text-center">
+        <p className="text-gray-400 text-sm">No employees match the selected filters.</p>
+      </div>
+    );
+  }
+
   return (
-    <div className="overflow-x-auto">
-      {employees.length === 0 ? (
-        <div className="flex flex-col items-center justify-center py-16 text-gray-400">
-          <span className="text-5xl mb-4">🔍</span>
-          <p className="text-lg font-medium">No employees match your filters</p>
-          <p className="text-sm mt-1">Try adjusting or clearing the filters above</p>
-        </div>
-      ) : (
-        <table className="min-w-full divide-y divide-gray-200">
-          <thead className="bg-gray-100">
-            <tr>
-              <th className="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">
-                Name
-              </th>
-              <th className="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider hidden sm:table-cell">
-                Position
-              </th>
-              <th className="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider hidden md:table-cell">
-                Department
-              </th>
-              <th className="px-4 py-3 text-right text-xs font-semibold text-gray-500 uppercase tracking-wider">
-                Points
-              </th>
-              <th className="px-4 py-3 text-center text-xs font-semibold text-gray-500 uppercase tracking-wider">
-                Activities
-              </th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-gray-200">
-            {employees.map((employee) => (
-              <EmployeeRow
-                key={employee.id}
-                employee={employee}
-                isExpanded={expandedRows.has(employee.id)}
-                onToggle={onToggleExpand}
-              />
-            ))}
-          </tbody>
-        </table>
-      )}
+    <div className="rounded-xl bg-white shadow-sm border border-gray-100 overflow-hidden">
+      {/* Table header */}
+      <div className="flex items-center gap-4 border-b border-gray-200 bg-gray-50 px-6 py-3">
+        <span className="w-8 shrink-0 text-center text-xs font-bold uppercase tracking-wide text-gray-400">
+          #
+        </span>
+        <span className="flex-1 text-xs font-bold uppercase tracking-wide text-gray-500">
+          Name
+        </span>
+        <span className="hidden w-44 text-xs font-bold uppercase tracking-wide text-gray-500 sm:block">
+          Position
+        </span>
+        <span className="hidden w-36 text-xs font-bold uppercase tracking-wide text-gray-500 md:block">
+          Department
+        </span>
+        <span className="w-20 shrink-0 text-right text-xs font-bold uppercase tracking-wide text-gray-500">
+          Points
+        </span>
+        {/* Space for the toggle button */}
+        <span className="ml-2 w-8 shrink-0" aria-hidden="true" />
+      </div>
+
+      {/* Rows */}
+      {employees.map((employee, index) => (
+        <EmployeeRow
+          key={employee.id}
+          rank={index + 1}
+          employee={employee}
+          isExpanded={expandedRows.has(employee.id)}
+          onToggle={onToggleExpand}
+        />
+      ))}
     </div>
   );
 };
