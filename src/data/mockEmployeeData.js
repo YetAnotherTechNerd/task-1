@@ -11,9 +11,9 @@ const mockEmployeeData = [
     category: 'Engineering',
     points: 480,
     recentActivities: [
-      { id: 'act_001', name: 'Software Architecture Conference', category: 'Engineering', date: '2024-01-15', points: 60 },
-      { id: 'act_002', name: 'Advanced Debugging Techniques Lecture', category: 'Engineering', date: '2024-02-10', points: 120 },
-      { id: 'act_003', name: 'System Design Roundtable', category: 'Engineering', date: '2024-03-05', points: 300 },
+      { id: 'act_001', name: 'Software Architecture Conference', category: 'Conference', date: '2024-01-15', points: 60 },
+      { id: 'act_002', name: 'Advanced Debugging Techniques Lecture', category: 'Lecture', date: '2024-02-10', points: 120 },
+      { id: 'act_003', name: 'System Design Roundtable', category: 'Roundtable', date: '2024-03-05', points: 300 },
     ],
   },
   {
@@ -27,9 +27,9 @@ const mockEmployeeData = [
     category: 'Sales',
     points: 560,
     recentActivities: [
-      { id: 'act_004', name: 'Enterprise Sales Summit', category: 'Sales', date: '2024-01-22', points: 250 },
-      { id: 'act_005', name: 'Lead Generation Strategies Lecture', category: 'Sales', date: '2024-02-18', points: 180 },
-      { id: 'act_006', name: 'Client Success Roundtable', category: 'Sales', date: '2024-03-12', points: 130 },
+      { id: 'act_004', name: 'Enterprise Sales Summit', category: 'Summit', date: '2024-01-22', points: 250 },
+      { id: 'act_005', name: 'Lead Generation Strategies Lecture', category: 'Lecture', date: '2024-02-18', points: 180 },
+      { id: 'act_006', name: 'Client Success Roundtable', category: 'Roundtable', date: '2024-03-12', points: 130 },
     ],
   },
   {
@@ -43,8 +43,8 @@ const mockEmployeeData = [
     category: 'HR',
     points: 310,
     recentActivities: [
-      { id: 'act_007', name: 'Talent Management Conference', category: 'HR', date: '2024-01-30', points: 150 },
-      { id: 'act_008', name: 'Organizational Development Lecture', category: 'HR', date: '2024-03-01', points: 160 },
+      { id: 'act_007', name: 'Talent Management Conference', category: 'Conference', date: '2024-01-30', points: 150 },
+      { id: 'act_008', name: 'Organizational Development Lecture', category: 'Lecture', date: '2024-03-01', points: 160 },
     ],
   },
 
@@ -60,8 +60,8 @@ const mockEmployeeData = [
     category: 'Engineering',
     points: 420,
     recentActivities: [
-      { id: 'act_009', name: 'React Framework Conference', category: 'Engineering', date: '2024-04-08', points: 200 },
-      { id: 'act_010', name: 'Web Performance Optimization Lecture', category: 'Engineering', date: '2024-05-20', points: 220 },
+      { id: 'act_009', name: 'React Framework Conference', category: 'Conference', date: '2024-04-08', points: 200 },
+      { id: 'act_010', name: 'Web Performance Optimization Lecture', category: 'Lecture', date: '2024-05-20', points: 220 },
     ],
   },
   {
@@ -75,8 +75,8 @@ const mockEmployeeData = [
     category: 'Marketing',
     points: 390,
     recentActivities: [
-      { id: 'act_011', name: 'Digital Marketing Summit', category: 'Marketing', date: '2024-04-15', points: 180 },
-      { id: 'act_012', name: 'Social Media Strategy Roundtable', category: 'Marketing', date: '2024-06-01', points: 210 },
+      { id: 'act_011', name: 'Digital Marketing Summit', category: 'Summit', date: '2024-04-15', points: 180 },
+      { id: 'act_012', name: 'Social Media Strategy Roundtable', category: 'Roundtable', date: '2024-06-01', points: 210 },
     ],
   },
   {
@@ -90,8 +90,8 @@ const mockEmployeeData = [
     category: 'Sales',
     points: 495,
     recentActivities: [
-      { id: 'act_013', name: 'Sales Excellence Conference', category: 'Sales', date: '2024-04-25', points: 220 },
-      { id: 'act_014', name: 'Customer Retention Strategies Lecture', category: 'Sales', date: '2024-06-10', points: 275 },
+      { id: 'act_013', name: 'Sales Excellence Conference', category: 'Conference', date: '2024-04-25', points: 220 },
+      { id: 'act_014', name: 'Customer Retention Strategies Lecture', category: 'Lecture', date: '2024-06-10', points: 275 },
     ],
   },
 
@@ -107,8 +107,8 @@ const mockEmployeeData = [
     category: 'Engineering',
     points: 530,
     recentActivities: [
-      { id: 'act_015', name: 'API Design Conference', category: 'Engineering', date: '2024-07-18', points: 260 },
-      { id: 'act_016', name: 'Cybersecurity Best Practices Lecture', category: 'Engineering', date: '2024-08-30', points: 270 },
+      { id: 'act_015', name: 'API Design Conference', category: 'Conference', date: '2024-07-18', points: 260 },
+      { id: 'act_016', name: 'Cybersecurity Best Practices Lecture', category: 'Lecture', date: '2024-08-30', points: 270 },
     ],
   },
   {
@@ -122,8 +122,8 @@ const mockEmployeeData = [
     category: 'HR',
     points: 295,
     recentActivities: [
-      { id: 'act_017', name: 'Employee Engagement Summit', category: 'HR', date: '2024-07-10', points: 140 },
-      { id: 'act_018', name: 'Learning & Development Roundtable', category: 'HR', date: '2024-09-05', points: 155 },
+      { id: 'act_017', name: 'Employee Engagement Summit', category: 'Summit', date: '2024-07-10', points: 140 },
+      { id: 'act_018', name: 'Learning & Development Roundtable', category: 'Roundtable', date: '2024-09-05', points: 155 },
     ],
   },
 
@@ -139,8 +139,8 @@ const mockEmployeeData = [
     category: 'Marketing',
     points: 610,
     recentActivities: [
-      { id: 'act_019', name: 'Marketing Leadership Conference', category: 'Marketing', date: '2024-10-15', points: 300 },
-      { id: 'act_020', name: 'Brand Strategy Roundtable', category: 'Marketing', date: '2024-11-20', points: 310 },
+      { id: 'act_019', name: 'Marketing Leadership Conference', category: 'Conference', date: '2024-10-15', points: 300 },
+      { id: 'act_020', name: 'Brand Strategy Roundtable', category: 'Roundtable', date: '2024-11-20', points: 310 },
     ],
   },
   {
@@ -154,8 +154,8 @@ const mockEmployeeData = [
     category: 'Sales',
     points: 720,
     recentActivities: [
-      { id: 'act_021', name: 'Sales Performance Summit', category: 'Sales', date: '2024-10-28', points: 350 },
-      { id: 'act_022', name: 'Market Expansion Strategy Lecture', category: 'Sales', date: '2024-12-01', points: 370 },
+      { id: 'act_021', name: 'Sales Performance Summit', category: 'Summit', date: '2024-10-28', points: 350 },
+      { id: 'act_022', name: 'Market Expansion Strategy Lecture', category: 'Lecture', date: '2024-12-01', points: 370 },
     ],
   },
 
@@ -171,8 +171,8 @@ const mockEmployeeData = [
     category: 'Engineering',
     points: 505,
     recentActivities: [
-      { id: 'act_023', name: 'Full-Stack Development Conference', category: 'Engineering', date: '2025-01-14', points: 240 },
-      { id: 'act_024', name: 'DevOps & Automation Lecture', category: 'Engineering', date: '2025-02-22', points: 265 },
+      { id: 'act_023', name: 'Full-Stack Development Conference', category: 'Conference', date: '2025-01-14', points: 240 },
+      { id: 'act_024', name: 'DevOps & Automation Lecture', category: 'Lecture', date: '2025-02-22', points: 265 },
     ],
   },
   {
@@ -186,8 +186,8 @@ const mockEmployeeData = [
     category: 'Marketing',
     points: 370,
     recentActivities: [
-      { id: 'act_025', name: 'Content Marketing Summit', category: 'Marketing', date: '2025-01-20', points: 170 },
-      { id: 'act_026', name: 'SEO & Analytics Roundtable', category: 'Marketing', date: '2025-03-10', points: 200 },
+      { id: 'act_025', name: 'Content Marketing Summit', category: 'Summit', date: '2025-01-20', points: 170 },
+      { id: 'act_026', name: 'SEO & Analytics Roundtable', category: 'Roundtable', date: '2025-03-10', points: 200 },
     ],
   },
   {
@@ -201,8 +201,8 @@ const mockEmployeeData = [
     category: 'HR',
     points: 445,
     recentActivities: [
-      { id: 'act_027', name: 'HR Leadership Conference', category: 'HR', date: '2025-01-28', points: 210 },
-      { id: 'act_028', name: 'Compensation & Benefits Lecture', category: 'HR', date: '2025-03-15', points: 235 },
+      { id: 'act_027', name: 'HR Leadership Conference', category: 'Conference', date: '2025-01-28', points: 210 },
+      { id: 'act_028', name: 'Compensation & Benefits Lecture', category: 'Lecture', date: '2025-03-15', points: 235 },
     ],
   },
 
@@ -218,8 +218,8 @@ const mockEmployeeData = [
     category: 'Engineering',
     points: 580,
     recentActivities: [
-      { id: 'act_029', name: 'Cloud Infrastructure Conference', category: 'Engineering', date: '2025-04-05', points: 290 },
-      { id: 'act_030', name: 'Observability & Monitoring Lecture', category: 'Engineering', date: '2025-05-18', points: 290 },
+      { id: 'act_029', name: 'Cloud Infrastructure Conference', category: 'Conference', date: '2025-04-05', points: 290 },
+      { id: 'act_030', name: 'Observability & Monitoring Lecture', category: 'Lecture', date: '2025-05-18', points: 290 },
     ],
   },
   {
@@ -233,8 +233,8 @@ const mockEmployeeData = [
     category: 'Sales',
     points: 640,
     recentActivities: [
-      { id: 'act_031', name: 'Account Management Summit', category: 'Sales', date: '2025-04-12', points: 310 },
-      { id: 'act_032', name: 'Client Relationship Roundtable', category: 'Sales', date: '2025-06-03', points: 330 },
+      { id: 'act_031', name: 'Account Management Summit', category: 'Summit', date: '2025-04-12', points: 310 },
+      { id: 'act_032', name: 'Client Relationship Roundtable', category: 'Roundtable', date: '2025-06-03', points: 330 },
     ],
   },
   {
@@ -248,8 +248,8 @@ const mockEmployeeData = [
     category: 'Marketing',
     points: 430,
     recentActivities: [
-      { id: 'act_033', name: 'Growth Marketing Conference', category: 'Marketing', date: '2025-04-20', points: 200 },
-      { id: 'act_034', name: 'Marketing Automation Lecture', category: 'Marketing', date: '2025-05-30', points: 230 },
+      { id: 'act_033', name: 'Growth Marketing Conference', category: 'Conference', date: '2025-04-20', points: 200 },
+      { id: 'act_034', name: 'Marketing Automation Lecture', category: 'Lecture', date: '2025-05-30', points: 230 },
     ],
   },
 ];
