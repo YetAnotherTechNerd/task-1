@@ -69,7 +69,7 @@ const useFilters = () => {
     });
   }, []);
 
-  // Memoised available options derived from current filter state.
+  // Memoized available options derived from current filter state.
   const availableYears = useMemo(() => getAvailableYears(mockEmployeeData), []);
 
   const availableQuarters = useMemo(
@@ -82,13 +82,13 @@ const useFilters = () => {
     [filters.year, filters.quarter]
   );
 
-  // Memoised filtered & sorted employee list.
+  // Memoized filtered & sorted employee list.
   const filteredData = useMemo(
     () => applyFilters(mockEmployeeData, filters),
     [filters]
   );
 
-  // Memoised top-3 from the full (unfiltered) dataset.
+  // Memoized top-3 from the full (unfiltered) dataset.
   const topThree = useMemo(() => getTopThree(mockEmployeeData), []);
 
   return {
