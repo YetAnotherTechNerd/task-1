@@ -4,11 +4,10 @@ import Dropdown from '../../common/Dropdown';
 const QuarterDropdown = ({ quarters, selected, onChange, disabled }) => (
   <Dropdown
     id="quarter-dropdown"
-    label="Quarter"
     options={quarters}
     value={selected}
     onChange={onChange}
-    placeholder="Select Quarter"
+    placeholder="All Quarters"
     disabled={disabled}
   />
 );

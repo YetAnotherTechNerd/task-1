@@ -12,8 +12,8 @@ const FilterSection = ({
   onFilterChange,
 }) => {
   return (
-    <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-4">
-      <div className="flex flex-wrap gap-4 items-end">
+    <div className="bg-gray-100 rounded-xl border border-gray-200 p-4">
+      <div className="flex flex-wrap gap-3 items-center">
         <div className="w-36">
           <YearDropdown
             years={years}
