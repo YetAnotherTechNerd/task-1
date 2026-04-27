@@ -10,7 +10,7 @@ import React from 'react';
  * @param {function} onChange      - Called with the new value (or null when placeholder selected)
  * @param {string}   placeholder   - Placeholder option text
  * @param {boolean}  disabled      - Disables the select element
- * @param {string}   className     - Additional Tailwind classes for the wrapper div
+ * @param {string}   className     - Additional CSS classes for the wrapper div
  */
 const Dropdown = ({
   id,
@@ -27,12 +27,45 @@ const Dropdown = ({
     onChange(selected === '' ? null : selected);
   };
 
+  const labelStyle = {
+    fontSize: 'var(--fontSizeBase100)',
+    fontWeight: 'var(--fontWeightSemibold)',
+    color: 'var(--colorNeutralForeground3)',
+    textTransform: 'uppercase',
+    letterSpacing: '0.05em',
+    lineHeight: 'var(--lineHeightBase100)',
+  };
+
+  const selectStyle = {
+    display: 'block',
+    width: '100%',
+    borderRadius: 'var(--borderRadiusLarge)',
+    border: `var(--strokeWidthThin) solid var(--colorNeutralStroke1)`,
+    backgroundColor: 'var(--colorNeutralBackground3)',
+    color: 'var(--colorNeutralForeground1)',
+    padding: `var(--spacingVerticalS) var(--spacingHorizontalM)`,
+    fontSize: 'var(--fontSizeBase300)',
+    boxShadow: 'var(--shadow2)',
+    transition: 'all var(--durationNormal) var(--curveEaseEase)',
+    fontFamily: 'var(--fontFamilyBase)',
+    fontWeight: 'var(--fontWeightRegular)',
+    outline: 'none',
+    cursor: disabled ? 'not-allowed' : 'pointer',
+    opacity: disabled ? 0.6 : 1,
+  };
+
+  const wrapperStyle = {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 'var(--spacingVerticalXS)',
+  };
+
   return (
-    <div className={`flex flex-col gap-1 ${className}`}>
+    <div style={wrapperStyle} className={className}>
       {label && (
         <label
           htmlFor={id}
-          className="text-xs font-semibold text-gray-500 uppercase tracking-wide"
+          style={labelStyle}
         >
           {label}
         </label>
@@ -42,12 +75,15 @@ const Dropdown = ({
         value={value ?? ''}
         onChange={handleChange}
         disabled={disabled}
-        className={`
-          block w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm
-          shadow-sm transition-colors
-          focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200
-          disabled:cursor-not-allowed disabled:bg-gray-100 disabled:text-gray-400
-        `}
+        style={selectStyle}
+        onFocus={(e) => {
+          e.target.style.borderColor = 'var(--colorBrandStroke1)';
+          e.target.style.boxShadow = '0 0 0 2px var(--colorBrandBackground2)';
+        }}
+        onBlur={(e) => {
+          e.target.style.borderColor = 'var(--colorNeutralStroke1)';
+          e.target.style.boxShadow = 'var(--shadow2)';
+        }}
       >
         <option value="">{placeholder}</option>
         {options.map((opt) => (
