@@ -30,7 +30,7 @@ const FilterSection = ({
         categories={availableCategories}
         selected={filters.category}
         onChange={(value) => onFilterChange('category', value)}
-        disabled={!filters.year && !filters.quarter}
+        disabled={!filters.year || !filters.quarter}
         placeholder="Select Category"
       />
       <SearchBar

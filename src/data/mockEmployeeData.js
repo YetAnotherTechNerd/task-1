@@ -81,7 +81,7 @@ const mockEmployeeData = [
   {
     id: 6,
     name: 'Frank',
-    surname: 'O\'Brien',
+    surname: "O'Brien",
     position: 'Software Architect',
     department: 'Engineering',
     points: 1890,
