@@ -1,47 +1,84 @@
 import React from 'react';
+import {
+  Table,
+  TableHeader,
+  TableHeaderCell,
+  TableBody,
+  TableRow,
+  TableCell,
+  Text,
+} from '@fluentui/react-components';
 
 const RecentActivityPanel = ({ activities }) => {
   if (!activities || activities.length === 0) {
     return (
-      <div className="px-6 py-4 text-sm text-gray-500 italic">
+      <div
+        style={{
+          padding: '16px 24px',
+          fontSize: '14px',
+          color: '#6b7280',
+          fontStyle: 'italic',
+        }}
+      >
         No recent activities recorded.
       </div>
     );
   }
 
   return (
-    <div className="bg-indigo-50 border-t border-indigo-100 px-6 py-4">
-      <h4 className="mb-3 text-xs font-bold uppercase tracking-widest text-indigo-600">
+    <div
+      style={{
+        backgroundColor: '#eef2ff',
+        borderTop: '1px solid #e0e7ff',
+        padding: '16px 24px',
+      }}
+    >
+      <Text
+        size={100}
+        weight="bold"
+        style={{
+          display: 'block',
+          marginBottom: '12px',
+          textTransform: 'uppercase',
+          letterSpacing: '0.1em',
+          color: '#4f46e5',
+        }}
+      >
         Recent Activity
-      </h4>
-      <div className="overflow-x-auto">
-        <table className="w-full text-sm">
-          <thead>
-            <tr className="text-left text-xs font-semibold uppercase text-indigo-400">
-              <th className="pb-2 pr-4">Activity</th>
-              <th className="pb-2 pr-4">Category</th>
-              <th className="pb-2 pr-4">Date</th>
-              <th className="pb-2 text-right">Points</th>
-            </tr>
-          </thead>
-          <tbody>
+      </Text>
+      <div style={{ overflowX: 'auto' }}>
+        <Table size="small" style={{ width: '100%' }}>
+          <TableHeader>
+            <TableRow>
+              <TableHeaderCell style={{ color: '#818cf8', fontSize: '11px', fontWeight: 600, textTransform: 'uppercase' }}>Activity</TableHeaderCell>
+              <TableHeaderCell style={{ color: '#818cf8', fontSize: '11px', fontWeight: 600, textTransform: 'uppercase' }}>Category</TableHeaderCell>
+              <TableHeaderCell style={{ color: '#818cf8', fontSize: '11px', fontWeight: 600, textTransform: 'uppercase' }}>Date</TableHeaderCell>
+              <TableHeaderCell style={{ color: '#818cf8', fontSize: '11px', fontWeight: 600, textTransform: 'uppercase', textAlign: 'right' }}>Points</TableHeaderCell>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
             {activities.map((activity) => (
-              <tr
-                key={activity.id}
-                className="border-t border-indigo-100 hover:bg-indigo-100/50 transition-colors"
-              >
-                <td className="py-2 pr-4 font-medium text-gray-800">
-                  {activity.name}
-                </td>
-                <td className="py-2 pr-4 text-gray-600">{activity.category}</td>
-                <td className="py-2 pr-4 text-gray-500">{activity.date}</td>
-                <td className="py-2 text-right font-semibold text-indigo-600">
-                  +{activity.points}
-                </td>
-              </tr>
+              <TableRow key={activity.id}>
+                <TableCell>
+                  <Text size={200} weight="semibold" style={{ color: '#1f2937' }}>
+                    {activity.name}
+                  </Text>
+                </TableCell>
+                <TableCell>
+                  <Text size={200} style={{ color: '#4b5563' }}>{activity.category}</Text>
+                </TableCell>
+                <TableCell>
+                  <Text size={200} style={{ color: '#6b7280' }}>{activity.date}</Text>
+                </TableCell>
+                <TableCell style={{ textAlign: 'right' }}>
+                  <Text size={200} weight="semibold" style={{ color: '#4f46e5' }}>
+                    +{activity.points}
+                  </Text>
+                </TableCell>
+              </TableRow>
             ))}
-          </tbody>
-        </table>
+          </TableBody>
+        </Table>
       </div>
     </div>
   );

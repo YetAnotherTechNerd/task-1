@@ -1,36 +1,114 @@
 import React from 'react';
+import { Text } from '@fluentui/react-components';
 import EmployeeRow from './EmployeeRow';
 
 const EmployeeListSection = ({ employees, expandedRows, onToggleExpand }) => {
   if (employees.length === 0) {
     return (
-      <div className="rounded-xl bg-white shadow-sm border border-gray-100 px-8 py-12 text-center">
-        <p className="text-gray-400 text-sm">No employees match the selected filters.</p>
+      <div
+        style={{
+          borderRadius: '12px',
+          backgroundColor: '#fff',
+          boxShadow: '0 1px 4px rgba(0,0,0,0.06)',
+          border: '1px solid #f3f2f1',
+          padding: '48px 32px',
+          textAlign: 'center',
+        }}
+      >
+        <Text size={200} style={{ color: '#9ca3af' }}>
+          No employees match the selected filters.
+        </Text>
       </div>
     );
   }
 
   return (
-    <div className="rounded-xl bg-white shadow-sm border border-gray-100 overflow-hidden">
+    <div
+      style={{
+        borderRadius: '12px',
+        backgroundColor: '#fff',
+        boxShadow: '0 1px 4px rgba(0,0,0,0.06)',
+        border: '1px solid #f3f2f1',
+        overflow: 'hidden',
+      }}
+    >
       {/* Table header */}
-      <div className="flex items-center gap-4 border-b border-gray-200 bg-gray-50 px-6 py-3">
-        <span className="w-8 shrink-0 text-center text-xs font-bold uppercase tracking-wide text-gray-400">
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '16px',
+          borderBottom: '1px solid #e5e7eb',
+          backgroundColor: '#f9fafb',
+          padding: '12px 24px',
+        }}
+      >
+        <Text
+          size={100}
+          weight="bold"
+          style={{
+            width: '32px',
+            flexShrink: 0,
+            textAlign: 'center',
+            textTransform: 'uppercase',
+            letterSpacing: '0.05em',
+            color: '#9ca3af',
+          }}
+        >
           #
-        </span>
-        <span className="flex-1 text-xs font-bold uppercase tracking-wide text-gray-500">
+        </Text>
+        <Text
+          size={100}
+          weight="bold"
+          style={{
+            flex: 1,
+            textTransform: 'uppercase',
+            letterSpacing: '0.05em',
+            color: '#6b7280',
+          }}
+        >
           Name
-        </span>
-        <span className="hidden w-44 text-xs font-bold uppercase tracking-wide text-gray-500 sm:block">
+        </Text>
+        <Text
+          size={100}
+          weight="bold"
+          style={{
+            width: '176px',
+            textTransform: 'uppercase',
+            letterSpacing: '0.05em',
+            color: '#6b7280',
+          }}
+        >
           Position
-        </span>
-        <span className="hidden w-36 text-xs font-bold uppercase tracking-wide text-gray-500 md:block">
+        </Text>
+        <Text
+          size={100}
+          weight="bold"
+          style={{
+            width: '144px',
+            textTransform: 'uppercase',
+            letterSpacing: '0.05em',
+            color: '#6b7280',
+          }}
+        >
           Department
-        </span>
-        <span className="w-20 shrink-0 text-right text-xs font-bold uppercase tracking-wide text-gray-500">
+        </Text>
+        <Text
+          size={100}
+          weight="bold"
+          style={{
+            width: '80px',
+            flexShrink: 0,
+            textAlign: 'right',
+            textTransform: 'uppercase',
+            letterSpacing: '0.05em',
+            color: '#6b7280',
+          }}
+        >
           Points
-        </span>
+        </Text>
         {/* Space for the toggle button */}
-        <span className="ml-2 w-8 shrink-0" aria-hidden="true" />
+        <span style={{ marginLeft: '8px', width: '32px', flexShrink: 0 }} aria-hidden="true" />
       </div>
 
       {/* Rows */}

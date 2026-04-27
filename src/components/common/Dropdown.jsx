@@ -1,15 +1,27 @@
 import React from 'react';
+import {
+  Dropdown as DropdownComponent,
+  Option,
+  makeStyles,
+} from '@fluentui/react-components';
+
+const useStyles = makeStyles({
+  dropdown: {
+    width: '100%',
+    minWidth: '0',
+  },
+});
 
 /**
- * Reusable base dropdown component.
+ * Reusable base dropdown component built on Fluent UI.
  *
- * @param {string}   id           - Input id (also used for label htmlFor)
+ * @param {string}   id           - Input id
  * @param {Array}    options       - Array of option values
  * @param {*}        value         - Currently selected value (null means "placeholder")
  * @param {function} onChange      - Called with the new value (or null when placeholder selected)
  * @param {string}   placeholder   - Placeholder option text shown inside the select
- * @param {boolean}  disabled      - Disables the select element
- * @param {string}   className     - Additional CSS classes for the wrapper div
+ * @param {boolean}  disabled      - Disables the dropdown
+ * @param {string}   className     - Additional CSS class for the wrapper div
  */
 const Dropdown = ({
   id,
@@ -20,33 +32,32 @@ const Dropdown = ({
   disabled = false,
   className = '',
 }) => {
-  const handleChange = (e) => {
-    const selected = e.target.value;
-    onChange(selected === '' ? null : selected);
+  const styles = useStyles();
+
+  const selectedOptions = value != null ? [String(value)] : [];
+
+  const handleOptionSelect = (_e, data) => {
+    const selected = data.optionValue;
+    onChange(selected === '__placeholder__' ? null : selected);
   };
 
   return (
-    <div className={className}>
-      <select
+    <div className={className} style={{ width: '100%' }}>
+      <DropdownComponent
         id={id}
-        value={value ?? ''}
-        onChange={handleChange}
+        className={styles.dropdown}
+        value={value != null ? String(value) : placeholder}
+        selectedOptions={selectedOptions}
+        onOptionSelect={handleOptionSelect}
         disabled={disabled}
-        className={[
-          'block w-full rounded border border-gray-300 bg-white',
-          'py-1.5 pl-3 pr-8 text-sm text-gray-700',
-          'focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-300',
-          'transition-colors',
-          disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer',
-        ].join(' ')}
+        placeholder={placeholder}
       >
-        <option value="">{placeholder}</option>
         {options.map((opt) => (
-          <option key={opt} value={opt}>
-            {opt}
-          </option>
+          <Option key={opt} value={String(opt)}>
+            {String(opt)}
+          </Option>
         ))}
-      </select>
+      </DropdownComponent>
     </div>
   );
 };

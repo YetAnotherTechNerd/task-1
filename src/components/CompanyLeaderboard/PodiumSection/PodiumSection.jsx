@@ -1,9 +1,28 @@
 import React from 'react';
+import { Card, Text, Badge } from '@fluentui/react-components';
 
 const MEDAL_CONFIG = {
-  1: { emoji: '🥇', bg: 'bg-yellow-50', border: 'border-yellow-400', text: 'text-yellow-700', label: '1st Place' },
-  2: { emoji: '🥈', bg: 'bg-gray-100', border: 'border-gray-400', text: 'text-gray-600', label: '2nd Place' },
-  3: { emoji: '🥉', bg: 'bg-orange-50', border: 'border-orange-400', text: 'text-orange-700', label: '3rd Place' },
+  1: {
+    emoji: '🥇',
+    bg: '#fffbeb',
+    border: '#f59e0b',
+    textColor: '#b45309',
+    label: '1st Place',
+  },
+  2: {
+    emoji: '🥈',
+    bg: '#f9fafb',
+    border: '#9ca3af',
+    textColor: '#4b5563',
+    label: '2nd Place',
+  },
+  3: {
+    emoji: '🥉',
+    bg: '#fff7ed',
+    border: '#fb923c',
+    textColor: '#c2410c',
+    label: '3rd Place',
+  },
 };
 
 const PodiumCard = ({ position, employee }) => {
@@ -11,25 +30,62 @@ const PodiumCard = ({ position, employee }) => {
   if (!employee) return null;
 
   return (
-    <div
-      className={`
-        flex flex-col items-center rounded-xl border-2 p-6 shadow-sm
-        ${config.bg} ${config.border}
-      `}
+    <Card
+      style={{
+        backgroundColor: config.bg,
+        border: `2px solid ${config.border}`,
+        borderRadius: '12px',
+        padding: '24px',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        gap: '4px',
+        boxShadow: '0 1px 4px rgba(0,0,0,0.08)',
+      }}
     >
-      <span className="text-4xl" role="img" aria-label={config.label}>
+      <span
+        role="img"
+        aria-label={config.label}
+        style={{ fontSize: '36px', lineHeight: 1 }}
+      >
         {config.emoji}
       </span>
-      <p className="mt-3 text-lg font-bold text-gray-800">
+      <Text
+        size={500}
+        weight="bold"
+        style={{ color: '#1f2937', marginTop: '12px', textAlign: 'center' }}
+      >
         {employee.name} {employee.surname}
-      </p>
-      <p className="text-sm text-gray-500">{employee.position}</p>
-      <p className={`text-xs font-medium ${config.text}`}>{employee.department}</p>
-      <p className={`mt-3 text-2xl font-extrabold ${config.text}`}>
+      </Text>
+      <Text size={200} style={{ color: '#6b7280', textAlign: 'center' }}>
+        {employee.position}
+      </Text>
+      <Badge
+        appearance="tint"
+        style={{
+          backgroundColor: config.bg,
+          color: config.textColor,
+          borderColor: config.border,
+          fontSize: '11px',
+        }}
+      >
+        {employee.department}
+      </Badge>
+      <Text
+        size={700}
+        weight="bold"
+        style={{ color: config.textColor, marginTop: '12px' }}
+      >
         {employee.points.toLocaleString()}
-        <span className="ml-1 text-sm font-normal">pts</span>
-      </p>
-    </div>
+        <Text
+          size={200}
+          weight="regular"
+          style={{ color: config.textColor, marginLeft: '4px' }}
+        >
+          pts
+        </Text>
+      </Text>
+    </Card>
   );
 };
 
@@ -47,8 +103,21 @@ const PodiumSection = ({ topThree }) => {
 
   return (
     <div>
-      <h2 className="mb-4 text-lg font-bold text-gray-700">Top Performers</h2>
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+      <Text
+        as="h2"
+        size={500}
+        weight="bold"
+        style={{ color: '#374151', display: 'block', marginBottom: '16px' }}
+      >
+        Top Performers
+      </Text>
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+          gap: '16px',
+        }}
+      >
         {podiumOrder.map(({ position, employee }) =>
           employee ? (
             <PodiumCard key={position} position={position} employee={employee} />
