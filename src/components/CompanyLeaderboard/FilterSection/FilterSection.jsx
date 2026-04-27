@@ -12,9 +12,23 @@ const FilterSection = ({
   onFilterChange,
 }) => {
   return (
-    <div className="bg-gray-100 rounded-xl border border-gray-200 p-4">
-      <div className="flex flex-wrap gap-3 items-center">
-        <div className="w-36">
+    <div
+      style={{
+        backgroundColor: '#f3f2f1',
+        borderRadius: '8px',
+        border: '1px solid #e1dfdd',
+        padding: '16px',
+      }}
+    >
+      <div
+        style={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          gap: '12px',
+          alignItems: 'center',
+        }}
+      >
+        <div style={{ width: '144px' }}>
           <YearDropdown
             years={years}
             selected={filters.year}
@@ -22,7 +36,7 @@ const FilterSection = ({
           />
         </div>
 
-        <div className="w-36">
+        <div style={{ width: '144px' }}>
           <QuarterDropdown
             quarters={quarters}
             selected={filters.quarter}
@@ -31,7 +45,7 @@ const FilterSection = ({
           />
         </div>
 
-        <div className="w-40">
+        <div style={{ width: '160px' }}>
           <CategoryDropdown
             categories={categories}
             selected={filters.category}

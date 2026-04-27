@@ -32,7 +32,7 @@ const CompanyLeaderboard = () => {
   }, []);
 
   return (
-    <div className="mx-auto max-w-5xl px-4 py-8 space-y-6">
+    <div style={{ maxWidth: '1024px', margin: '0 auto', padding: '32px 16px', display: 'flex', flexDirection: 'column', gap: '24px' }}>
       <LeaderboardHeader />
 
       <FilterSection

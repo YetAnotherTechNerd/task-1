@@ -3,7 +3,7 @@ import CompanyLeaderboard from './components/CompanyLeaderboard/CompanyLeaderboa
 
 function App() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div style={{ minHeight: '100vh', backgroundColor: '#f5f5f5' }}>
       <CompanyLeaderboard />
     </div>
   );

@@ -1,67 +1,103 @@
 import React from 'react';
+import { Text, Badge, Button } from '@fluentui/react-components';
+import { ChevronDownRegular } from '@fluentui/react-icons';
 import RecentActivityPanel from './RecentActivityPanel';
 
 const EmployeeRow = ({ employee, rank, isExpanded, onToggle }) => {
   return (
-    <div className="border-b border-gray-100 last:border-b-0">
+    <div style={{ borderBottom: '1px solid #f3f2f1' }}>
       {/* Main row */}
       <div
-        className={`
-          flex items-center gap-4 px-6 py-4 transition-colors
-          ${isExpanded ? 'bg-indigo-50' : 'hover:bg-gray-50'}
-        `}
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '16px',
+          padding: '16px 24px',
+          backgroundColor: isExpanded ? '#eef2ff' : undefined,
+          transition: 'background-color 0.15s',
+        }}
       >
         {/* Rank */}
-        <span className="w-8 shrink-0 text-center text-sm font-bold text-gray-400">
+        <Text
+          size={200}
+          weight="bold"
+          style={{
+            width: '32px',
+            flexShrink: 0,
+            textAlign: 'center',
+            color: '#9ca3af',
+          }}
+        >
           {rank}
-        </span>
+        </Text>
 
         {/* Name */}
-        <div className="min-w-0 flex-1">
-          <p className="truncate font-semibold text-gray-800">
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <Text
+            weight="semibold"
+            style={{
+              color: '#1f2937',
+              display: 'block',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              whiteSpace: 'nowrap',
+            }}
+          >
             {employee.name} {employee.surname}
-          </p>
+          </Text>
         </div>
 
         {/* Position */}
-        <div className="hidden min-w-0 w-44 sm:block">
-          <p className="truncate text-sm text-gray-600">{employee.position}</p>
+        <div style={{ width: '176px', minWidth: 0 }}>
+          <Text
+            size={200}
+            style={{
+              color: '#4b5563',
+              display: 'block',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              whiteSpace: 'nowrap',
+            }}
+          >
+            {employee.position}
+          </Text>
         </div>
 
         {/* Department */}
-        <div className="hidden min-w-0 w-36 md:block">
-          <span className="inline-block rounded-full bg-indigo-100 px-3 py-0.5 text-xs font-medium text-indigo-700">
+        <div style={{ width: '144px', minWidth: 0 }}>
+          <Badge appearance="tint" color="informative" size="small">
             {employee.department}
-          </span>
+          </Badge>
         </div>
 
         {/* Points */}
-        <div className="w-20 shrink-0 text-right">
-          <span className="text-sm font-bold text-indigo-600">
+        <div style={{ width: '80px', flexShrink: 0, textAlign: 'right', display: 'flex', alignItems: 'baseline', justifyContent: 'flex-end', gap: '4px' }}>
+          <Text size={200} weight="bold" style={{ color: '#4f46e5' }}>
             {employee.points.toLocaleString()}
-          </span>
-          <span className="ml-1 text-xs text-gray-400">pts</span>
+          </Text>
+          <Text size={100} style={{ color: '#9ca3af' }}>
+            pts
+          </Text>
         </div>
 
         {/* Expand toggle */}
-        <button
+        <Button
+          appearance="subtle"
+          shape="circular"
+          size="small"
+          icon={
+            <ChevronDownRegular
+              style={{
+                transform: isExpanded ? 'rotate(180deg)' : 'rotate(0deg)',
+                transition: 'transform 0.2s',
+              }}
+            />
+          }
           onClick={() => onToggle(employee.id)}
           aria-expanded={isExpanded}
           aria-label={isExpanded ? 'Collapse activities' : 'Expand activities'}
-          className="ml-2 flex h-8 w-8 shrink-0 items-center justify-center rounded-full
-            text-gray-400 transition-colors hover:bg-indigo-100 hover:text-indigo-600"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className={`h-5 w-5 transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`}
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            strokeWidth={2}
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-          </svg>
-        </button>
+          style={{ marginLeft: '8px', flexShrink: 0 }}
+        />
       </div>
 
       {/* Expandable activity panel */}
