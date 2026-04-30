@@ -115,3 +115,41 @@ input, select, textarea {
   border: 1px solid #000 !important;
   color: #000 !important;
 }
+
+.podium-layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.podium-place {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .podium-layout {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: center;
+  }
+
+  .podium-place-first {
+    order: 2;
+  }
+
+  .podium-place-second {
+    order: 1;
+  }
+
+  .podium-place-third {
+    order: 3;
+  }
+}
+
+.employee-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}

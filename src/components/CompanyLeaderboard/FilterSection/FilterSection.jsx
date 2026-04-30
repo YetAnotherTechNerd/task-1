@@ -50,7 +50,6 @@ const FilterSection = ({
             categories={categories}
             selected={filters.category}
             onChange={(val) => onFilterChange('category', val)}
-            disabled={!filters.year && !filters.quarter}
           />
         </div>
 

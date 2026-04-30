@@ -79,21 +79,22 @@ const PodiumCard = ({ position, employee }) => {
             display: 'flex',
             alignItems: 'center',
             gap: '8px',
-            minWidth: '58.516px',
-            height: '27px',
-            padding: '8px 20px',
+            width: '104.38px',
+            height: '41px',
+            padding: '0',
+            boxSizing: 'border-box',
             borderRadius: '999px',
-            border: '1px solid rgb(253, 224, 71)',
-            backgroundColor: 'rgb(254, 249, 195)',
+            border: '1px solid #fde047',
+            backgroundColor: '#fef9c3',
             justifyContent: 'center',
           }}
         >
-          <span style={{ fontSize: '18px' }}>⭐</span>
+          <span style={{ fontSize: '18px', color: '#ca8a04', lineHeight: '1' }}>★</span>
           <Text
             weight="bold"
             style={{
               fontSize: '20px',
-              color: 'rgb(202, 138, 4)',
+              color: '#ca8a04',
             }}
           >
             {employee.points}
@@ -105,9 +106,9 @@ const PodiumCard = ({ position, employee }) => {
             width: '280px',
             height: '178px',
             boxSizing: 'border-box',
-            borderTop: '4px solid rgb(251, 191, 36)',
+            borderTop: '2px solid #fde047',
             borderRadius: '22px 22px 0 0',
-            backgroundColor: 'rgb(253, 224, 71)',
+            background: 'linear-gradient(180deg, #fef3c7, #fde68a)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -134,8 +135,8 @@ const PodiumCard = ({ position, employee }) => {
     );
   }
 
-  const borderColor = 'rgb(255, 255, 255)';
-  const badgeColor = position === 2 ? 'rgb(148, 163, 184)' : 'rgb(249, 115, 22)';
+  const borderColor = '#cbd5e1';
+  const badgeColor = position === 2 ? 'rgb(148, 163, 184)' : '#92400e';
   const pedestalHeight = position === 2 ? '142px' : '118px';
   const pedestalLabel = position === 2 ? '2' : '3';
 
@@ -211,22 +212,22 @@ const PodiumCard = ({ position, employee }) => {
           display: 'flex',
           alignItems: 'center',
           gap: '6px',
-          minWidth: '53.063px',
-          height: '24px',
-          padding: '6px 1px',
+          width: '90.53px',
+          height: '35px',
+          padding: '0',
           boxSizing: 'border-box',
           borderRadius: '999px',
-          border: '1px solid rgb(255, 255, 255)',
+          border: '1px solid #e2e8f0',
           backgroundColor: 'rgb(255, 255, 255)',
           justifyContent: 'center',
         }}
       >
-        <span style={{ fontSize: '16px' }}>⭐</span>
+        <span style={{ fontSize: '16px', color: '#0ea5e9', lineHeight: '1' }}>★</span>
         <Text
           weight="bold"
           style={{
             fontSize: '18px',
-            color: 'rgb(14, 165, 233)',
+            color: '#0ea5e9',
           }}
         >
           {employee.points}
@@ -237,7 +238,7 @@ const PodiumCard = ({ position, employee }) => {
         style={{
           width: '210px',
           height: pedestalHeight,
-          borderTop: `4px solid ${borderColor}`,
+          borderTop: `2px solid ${borderColor}`,
           borderRadius: '22px 22px 0 0',
           background: 'linear-gradient(rgb(226, 232, 240), rgb(203, 213, 225))',
           display: 'flex',
@@ -270,20 +271,22 @@ const PodiumSection = ({ topThree }) => {
 
   return (
     <div
+      className="podium-layout"
       style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(3, 1fr)',
         gap: '24px',
         alignItems: 'end',
+        marginLeft: '120px',
+        marginRight: '120px',
+        marginBottom: '64px',
       }}
     >
-      <div style={{ order: 1 }}>
-        <PodiumCard position={2} employee={topThree[1]} />
-      </div>
-      <div style={{ order: 0 }}>
+      <div className="podium-place podium-place-first">
         <PodiumCard position={1} employee={topThree[0]} />
       </div>
-      <div style={{ order: 2 }}>
+      <div className="podium-place podium-place-second">
+        <PodiumCard position={2} employee={topThree[1]} />
+      </div>
+      <div className="podium-place podium-place-third">
         <PodiumCard position={3} employee={topThree[2]} />
       </div>
     </div>

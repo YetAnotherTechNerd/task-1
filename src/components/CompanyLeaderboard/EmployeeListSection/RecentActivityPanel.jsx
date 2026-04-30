@@ -14,7 +14,7 @@ const RecentActivityPanel = ({ activities }) => {
     return (
       <div
         style={{
-          padding: '16px 24px',
+          padding: '24px',
           fontSize: '14px',
           color: '#6b7280',
           fontStyle: 'italic',
@@ -32,7 +32,7 @@ const RecentActivityPanel = ({ activities }) => {
       style={{
         backgroundColor: 'rgb(248, 250, 252)',
         borderTop: '1px solid var(--app-border)',
-        padding: '16px 8px',
+        padding: '24px',
       }}
     >
       <Text
@@ -60,8 +60,8 @@ const RecentActivityPanel = ({ activities }) => {
             </tr>
           </thead>
           <tbody>
-            {activities.map((activity) => (
-              <tr key={activity.id} style={{ borderBottom: '1px solid var(--app-border)' }}>
+            {activities.map((activity, index) => (
+              <tr key={activity.id} style={{ borderBottom: index < activities.length - 1 ? '1px solid var(--app-border)' : 'none' }}>
                 <td style={{ padding: '16px 1px', fontSize: '14px', fontWeight: '700', color: 'rgb(30, 41, 59)', width: '66.5%' }}>
                   {activity.name}
                 </td>
