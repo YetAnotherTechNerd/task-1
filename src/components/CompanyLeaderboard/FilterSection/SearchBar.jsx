@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from 'react';
-import { SearchBox, useId } from '@fluentui/react-components';
+import { SearchBox } from '@fluentui/react-components';
 
 const SearchBar = ({ value, onChange }) => {
   const searchBoxRef = useRef(null);
