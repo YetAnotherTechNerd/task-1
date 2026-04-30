@@ -1,15 +1,15 @@
 import React from 'react';
-import {
-  Table,
-  TableHeader,
-  TableHeaderCell,
-  TableBody,
-  TableRow,
-  TableCell,
-  Text,
-} from '@fluentui/react-components';
+import { Text } from '@fluentui/react-components';
 
 const RecentActivityPanel = ({ activities }) => {
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = date.toLocaleString('en-US', { month: 'short' });
+    const year = date.getFullYear();
+    return `${day}-${month}-${year}`;
+  };
+
   if (!activities || activities.length === 0) {
     return (
       <div
@@ -18,6 +18,8 @@ const RecentActivityPanel = ({ activities }) => {
           fontSize: '14px',
           color: '#6b7280',
           fontStyle: 'italic',
+          backgroundColor: 'rgb(248, 250, 252)',
+          borderTop: '1px solid var(--app-border)',
         }}
       >
         No recent activities recorded.
@@ -28,9 +30,9 @@ const RecentActivityPanel = ({ activities }) => {
   return (
     <div
       style={{
-        backgroundColor: '#eef2ff',
-        borderTop: '1px solid #e0e7ff',
-        padding: '16px 24px',
+        backgroundColor: 'rgb(248, 250, 252)',
+        borderTop: '1px solid var(--app-border)',
+        padding: '16px 8px',
       }}
     >
       <Text
@@ -41,44 +43,43 @@ const RecentActivityPanel = ({ activities }) => {
           marginBottom: '12px',
           textTransform: 'uppercase',
           letterSpacing: '0.1em',
-          color: '#4f46e5',
+          color: 'rgb(100, 116, 139)',
+          fontSize: '12px',
         }}
       >
         Recent Activity
       </Text>
       <div style={{ overflowX: 'auto' }}>
-        <Table size="small" style={{ width: '100%' }}>
-          <TableHeader>
-            <TableRow>
-              <TableHeaderCell style={{ color: '#818cf8', fontSize: '11px', fontWeight: 600, textTransform: 'uppercase' }}>Activity</TableHeaderCell>
-              <TableHeaderCell style={{ color: '#818cf8', fontSize: '11px', fontWeight: 600, textTransform: 'uppercase' }}>Category</TableHeaderCell>
-              <TableHeaderCell style={{ color: '#818cf8', fontSize: '11px', fontWeight: 600, textTransform: 'uppercase' }}>Date</TableHeaderCell>
-              <TableHeaderCell style={{ color: '#818cf8', fontSize: '11px', fontWeight: 600, textTransform: 'uppercase', textAlign: 'right' }}>Points</TableHeaderCell>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
+        <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+          <thead>
+            <tr>
+              <th style={{ textAlign: 'left', padding: '8px 1px', width: '66.5%', fontSize: '11px', fontWeight: '600', textTransform: 'uppercase', color: 'rgb(100, 116, 139)', borderBottom: '1px solid var(--app-border)' }}>Activity</th>
+              <th style={{ textAlign: 'left', padding: '8px 1px', width: '14.8%', fontSize: '11px', fontWeight: '600', textTransform: 'uppercase', color: 'rgb(100, 116, 139)', borderBottom: '1px solid var(--app-border)' }}>Category</th>
+              <th style={{ textAlign: 'left', padding: '8px 1px', width: '11.5%', fontSize: '11px', fontWeight: '600', textTransform: 'uppercase', color: 'rgb(100, 116, 139)', borderBottom: '1px solid var(--app-border)' }}>Date</th>
+              <th style={{ textAlign: 'right', padding: '8px 1px', width: '7.2%', fontSize: '11px', fontWeight: '600', textTransform: 'uppercase', color: 'rgb(100, 116, 139)', borderBottom: '1px solid var(--app-border)' }}>Points</th>
+            </tr>
+          </thead>
+          <tbody>
             {activities.map((activity) => (
-              <TableRow key={activity.id}>
-                <TableCell>
-                  <Text size={200} weight="semibold" style={{ color: '#1f2937' }}>
-                    {activity.name}
-                  </Text>
-                </TableCell>
-                <TableCell>
-                  <Text size={200} style={{ color: '#4b5563' }}>{activity.category}</Text>
-                </TableCell>
-                <TableCell>
-                  <Text size={200} style={{ color: '#6b7280' }}>{activity.date}</Text>
-                </TableCell>
-                <TableCell style={{ textAlign: 'right' }}>
-                  <Text size={200} weight="semibold" style={{ color: '#4f46e5' }}>
-                    +{activity.points}
-                  </Text>
-                </TableCell>
-              </TableRow>
+              <tr key={activity.id} style={{ borderBottom: '1px solid var(--app-border)' }}>
+                <td style={{ padding: '16px 1px', fontSize: '14px', fontWeight: '700', color: 'rgb(30, 41, 59)', width: '66.5%' }}>
+                  {activity.name}
+                </td>
+                <td style={{ padding: '16px 1px', width: '14.8%' }}>
+                  <div style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', minHeight: '16px', padding: '0 10px', borderRadius: '999px', backgroundColor: 'rgb(226, 232, 240)', fontSize: '12px', fontWeight: '700', color: 'rgb(71, 85, 105)' }}>
+                    {activity.category}
+                  </div>
+                </td>
+                <td style={{ padding: '16px 1px', fontSize: '12px', color: 'rgb(100, 116, 139)', width: '11.5%' }}>
+                  {formatDate(activity.date)}
+                </td>
+                <td style={{ padding: '16px 1px', fontSize: '14px', fontWeight: '700', color: 'rgb(14, 165, 233)', textAlign: 'right', width: '7.2%' }}>
+                  +{activity.points}
+                </td>
+              </tr>
             ))}
-          </TableBody>
-        </Table>
+          </tbody>
+        </table>
       </div>
     </div>
   );

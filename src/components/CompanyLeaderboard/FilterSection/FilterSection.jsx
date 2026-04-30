@@ -14,9 +14,9 @@ const FilterSection = ({
   return (
     <div
       style={{
-        backgroundColor: '#f3f2f1',
+        backgroundColor: 'rgb(255, 255, 255)',
         borderRadius: '8px',
-        border: '1px solid #e1dfdd',
+        border: '1px solid rgb(226, 232, 240)',
         padding: '16px',
       }}
     >

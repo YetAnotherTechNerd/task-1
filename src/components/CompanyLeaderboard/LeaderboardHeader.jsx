@@ -5,25 +5,36 @@ const LeaderboardHeader = () => {
   return (
     <div
       style={{
-        background: 'linear-gradient(to right, #4f46e5, #3b82f6)',
-        borderRadius: '12px',
-        padding: '40px 32px',
-        color: '#fff',
-        boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
+        textAlign: 'right',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        height: '67px',
       }}
     >
       <Text
         as="h1"
-        size={800}
         weight="bold"
-        style={{ color: '#fff', display: 'block', letterSpacing: '-0.5px' }}
+        style={{
+          fontSize: '30px',
+          color: 'rgb(15, 23, 42)',
+          display: 'block',
+          margin: '0',
+          whiteSpace: 'nowrap',
+          lineHeight: '1.2',
+        }}
       >
         Leaderboard
       </Text>
       <Text
         as="p"
-        size={400}
-        style={{ color: '#c7d2fe', display: 'block', marginTop: '8px' }}
+        style={{
+          fontSize: '14px',
+          color: 'rgb(100, 116, 139)',
+          display: 'block',
+          margin: '0',
+          lineHeight: '1.2',
+        }}
       >
         Top performers based on contributions and activity
       </Text>

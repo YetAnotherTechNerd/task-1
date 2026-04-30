@@ -3,8 +3,10 @@ import CompanyLeaderboard from './components/CompanyLeaderboard/CompanyLeaderboa
 
 function App() {
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: '#f5f5f5' }}>
-      <CompanyLeaderboard />
+    <div style={{ minHeight: '100vh', backgroundColor: 'rgb(248, 250, 252)' }}>
+      <div style={{ width: '1204px', maxWidth: '100%', backgroundColor: 'rgb(248, 250, 252)', margin: '0 auto', padding: '0 16px', boxSizing: 'border-box' }}>
+        <CompanyLeaderboard />
+      </div>
     </div>
   );
 }
